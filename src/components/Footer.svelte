@@ -11,6 +11,12 @@
 
 <style>
   .app-footer{
+    width: 100dvw;
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+
+    height: 10dvh;
     font-size: 1.1rem;
     
     display: flex;

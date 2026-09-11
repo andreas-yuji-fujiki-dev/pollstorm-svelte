@@ -10,13 +10,14 @@
 
 <style>
   .app-header {
-    background-color: #000;
-    color: #fff;
+    height: 15dvh;
 
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 25dvh;
+
+    background-color: #000;
+    color: #fff;
   }
 
   .main-title {

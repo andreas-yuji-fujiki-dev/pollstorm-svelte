@@ -10,19 +10,19 @@
 
 <style>
   .app-header {
-    height: 15dvh;
+    height: 20dvh;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: #000;
-    color: #fff;
+    background-color: #f2f2f2;
+    color: #000;
   }
 
   .main-title {
-    font-size: 2.2rem;
-    font-weight: 100;
+    font-size: 3rem;
+    font-weight: 500;
     letter-spacing: 1rem;
   }
 

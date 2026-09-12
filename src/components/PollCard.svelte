@@ -1,6 +1,10 @@
 <script>
   export let poll;
 
+  $: totalVotes = poll.answer_a.votes + poll.answer_b.votes;
+  $: percentA = Math.floor(100 / totalVotes * poll.answer_a.votes);
+  $: percentB = Math.floor(100 / totalVotes * poll.answer_b.votes);
+
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
 </script>
@@ -13,7 +17,7 @@
     </h3>
     <!-- total votes -->
     <span class="total-votes">
-      Total votes: {poll.answer_a.votes + poll.answer_b.votes}
+      Total votes: {totalVotes}
     </span>
   </div>
 
@@ -21,17 +25,19 @@
   <div class="answers-wrapper">
     <!-- answer A -->
     <button 
-      on:click|self={() => dispatch('vote', {id: poll.id, letter: 'a'} )}
+      on:click={() => dispatch('vote', {id: poll.id, letter: 'a'} )}
       class="answer-btn answer-a"
     >
+      <div class="percent percent-a" style="width: {percentA}%;"></div>
       {poll.answer_a.label} ({poll.answer_a.votes} votes)
     </button>
 
     <!-- answer B -->
     <button
-      on:click|self={() => dispatch('vote', {id: poll.id, letter: 'b'} )} 
+      on:click={() => dispatch('vote', {id: poll.id, letter: 'b'} )} 
       class="answer-btn answer-b"
     >
+      <div class="percent percent-b" style="width: {percentB}%;"></div>
       {poll.answer_b.label} ({poll.answer_b.votes} votes)
     </button>
   </div>
@@ -106,5 +112,22 @@
     background-color: green;
     height: 100%;
     width: 0.5rem;
+  }
+
+  .percent {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    opacity: 15%;
+  }
+
+  .percent-a {
+    background-color: #ff0000;
+  }
+  
+  .percent-b {
+    background-color: #adff2f;
   }
 </style>

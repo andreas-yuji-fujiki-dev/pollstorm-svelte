@@ -23,3 +23,9 @@ button  {
 ul, ol {
 	list-style: none;
 }
+
+input {
+	border: none;
+	outline: none;
+	background-color: transparent;
+}

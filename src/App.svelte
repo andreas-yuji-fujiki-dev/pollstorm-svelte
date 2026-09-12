@@ -93,6 +93,6 @@
 
 <style>
   .main-content {
-    height: 80dvh;
+    height: 85dvh;
   }
 </style>

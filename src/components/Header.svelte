@@ -10,7 +10,7 @@
 
 <style>
   .app-header {
-    height: 20dvh;
+    height: 25dvh;
 
     display: flex;
     justify-content: center;

@@ -1,4 +1,6 @@
 <script>
+  export let polls;
+
   // uuid generator
   import { v4 as uuid4 } from "uuid";
 
@@ -10,6 +12,15 @@
   let pollQuestion;
   let answerA;
   let answerB;
+
+  // poll creation handler
+  const handleCreateNewPoll = (newPollData) => {
+    // go to Polls tab
+    dispatch('changeTab', 'Current Polls');
+
+    // append new poll into the begin of the list
+    polls = [newPollData, ...polls]
+  };
 
   // form submit handler
   const handleSubmit = () => {
@@ -33,9 +44,9 @@
     }
 
     // dispatching a custom event for creating a new poll
-    dispatch('createNewPoll', pollData)
+    handleCreateNewPoll(pollData)
     alert('Your poll has been created successfully!')
-  }
+  };
 </script>
 
 <form class="new-poll-form" on:submit|preventDefault={handleSubmit}>

@@ -115,12 +115,13 @@
   }
 
   .percent {
+    transition: all 1s;
     position: absolute;
     height: 100%;
     top: 0;
     left: 0;
 
-    opacity: 15%;
+    opacity: 20%;
   }
 
   .percent-a {

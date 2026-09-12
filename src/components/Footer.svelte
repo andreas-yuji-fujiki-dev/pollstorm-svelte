@@ -22,5 +22,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
+    border-top: 0.1rem solid #eeecec;
   }
 </style>

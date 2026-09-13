@@ -1,9 +1,16 @@
 <script>
   export let poll;
 
+  import { tweened } from 'svelte/motion';
+
   $: totalVotes = poll.answer_a.votes + poll.answer_b.votes;
-  $: percentA = Math.floor(100 / totalVotes * poll.answer_a.votes);
-  $: percentB = Math.floor(100 / totalVotes * poll.answer_b.votes);
+  $: percentA = Math.floor(100 / totalVotes * poll.answer_a.votes) || 0;
+  $: percentB = Math.floor(100 / totalVotes * poll.answer_b.votes) || 0;
+
+  const tweenedA = tweened(0);
+  const tweenedB = tweened(0);
+  $: tweenedA.set(percentA);
+  $: tweenedB.set(percentB);
 
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
@@ -28,7 +35,7 @@
       on:click={() => dispatch('vote', {id: poll.id, letter: 'a'} )}
       class="answer-btn answer-a"
     >
-      <div class="percent percent-a" style="width: {percentA || 0}%;"></div>
+      <div class="percent percent-a" style="width: {$tweenedA}%;"></div>
       {poll.answer_a.label} ({poll.answer_a.votes} votes)
     </button>
 
@@ -37,7 +44,7 @@
       on:click={() => dispatch('vote', {id: poll.id, letter: 'b'} )} 
       class="answer-btn answer-b"
     >
-      <div class="percent percent-b" style="width: {percentB || 0}%;"></div>
+      <div class="percent percent-b" style="width: {$tweenedB}%;"></div>
       {poll.answer_b.label} ({poll.answer_b.votes} votes)
     </button>
   </div>
@@ -125,7 +132,6 @@
   }
 
   .percent {
-    transition: all 1s;
     position: absolute;
     height: 100%;
     top: 0;

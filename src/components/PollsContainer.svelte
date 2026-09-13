@@ -1,4 +1,7 @@
 <script>
+  import { flip } from 'svelte/animate';
+  import { fade, scale } from 'svelte/transition';
+
   import PollStore from '../stores/PollStore';
   import PollCard from "./PollCard.svelte";
 
@@ -31,7 +34,18 @@
 
 <div class="polls-container">
   {#each $PollStore as poll (poll.id)}
-    <PollCard poll={poll} on:vote={handleVote} on:delete={handleDelete} />
+    <div 
+      class="poll-card-wrapper" 
+      animate:flip={ { duration: 500 } }
+      in:fade
+      out:scale|local
+    >
+      <PollCard 
+        poll={poll} 
+        on:vote={handleVote} 
+        on:delete={handleDelete} 
+      />
+    </div>
   {/each}
 </div>
 

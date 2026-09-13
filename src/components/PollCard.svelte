@@ -1,6 +1,5 @@
 <script>
   export let poll;
-  import { fade, scale } from 'svelte/transition';
 
   $: totalVotes = poll.answer_a.votes + poll.answer_b.votes;
   $: percentA = Math.floor(100 / totalVotes * poll.answer_a.votes);
@@ -10,7 +9,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
-<div class="poll-card" in:fade out:scale|local>
+<div class="poll-card">
   <div class="card-header">
     <!-- question -->
     <h3 class="poll-question">

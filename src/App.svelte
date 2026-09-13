@@ -25,7 +25,9 @@
   <!-- Current Polls
   -->
   {#if currentTab === 'Current Polls'}
-    <PollsContainer />
+    <PollsContainer 
+      on:changeTab={handleChangeTab}
+    />
   {/if}
 
   <!-- New Poll Form 

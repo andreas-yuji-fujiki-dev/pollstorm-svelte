@@ -1,9 +1,13 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+
   import { flip } from 'svelte/animate';
   import { fade, scale } from 'svelte/transition';
 
   import PollStore from '../stores/PollStore';
   import PollCard from "./PollCard.svelte";
+
+  const dispatch = createEventDispatcher();
 
   // vote handler
   const handleVote = ( e ) => {
@@ -46,15 +50,50 @@
         on:delete={handleDelete} 
       />
     </div>
+  {:else}
+    <div class="no-polls-container">
+      <span class="no-polls-message">
+        There is no polls to show...
+      </span> 
+      <button
+        class="no-polls-button" 
+        on:click={() => dispatch('changeTab', 'Add New Poll')}
+      >
+        Try creating one!
+      </button>
+    </div>
   {/each}
 </div>
 
 <style>
   .polls-container {
+    position: relative;
     padding: 0 20rem 10rem 20rem;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+  }
+
+  .no-polls-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .no-polls-message {
+    font-size: 1.2rem;
+    opacity: 70%;
+  }
+
+  .no-polls-button {
+    font-size: 1.2rem;
+    text-decoration: underline;
+  }
+  .no-polls-button:hover {
+    text-decoration: none;
   }
 </style>

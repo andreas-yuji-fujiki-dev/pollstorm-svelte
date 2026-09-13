@@ -5,7 +5,7 @@
   // vote handler
   const handleVote = ( e ) => {
     // updating the poll by incrementing a vote to the selected answer
-    PollStore.update( ( currentData ) => {
+    PollStore.update( currentData => {
       const id = e.detail.id;
       const answerLetter = e.detail.letter;
 
@@ -18,11 +18,20 @@
       return copiedPolls;
     })
   }
+
+  // delete handler
+  const handleDelete = ( e ) => {
+    const idToDelete = e.detail.id;
+
+    PollStore.update( currentData => {
+      return currentData.filter(poll => poll.id != idToDelete);
+    })
+  }
 </script>
 
 <div class="polls-container">
   {#each $PollStore as poll (poll.id)}
-    <PollCard poll={poll} on:vote={handleVote} />
+    <PollCard poll={poll} on:vote={handleVote} on:delete={handleDelete} />
   {/each}
 </div>
 

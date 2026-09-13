@@ -10,58 +10,6 @@
   const existingTabs = ['Current Polls', 'Add New Poll'];
   let currentTab = 'Current Polls';
   const handleChangeTab = (e) => currentTab = e.detail;
-
-  // polls
-  let activePolls = [
-    {
-      'id': 'ajsdhjkasdkhjsakhjgasj',
-      'question': 'Test 1',
-      'answer_a': {
-        'label': 'answerA',
-        'votes': 0
-      },
-      'answer_b': {
-        'label': 'answerB',
-        'votes': 0
-      }
-    },
-    {
-      'id': 'awkeuaweihguus',
-      'question': 'Test 2',
-      'answer_a': {
-        'label': 'answerA',
-        'votes': 0
-      },
-      'answer_b': {
-        'label': 'answerB',
-        'votes': 0
-      }
-    },
-    {
-      'id': 'ajsdhjkasdkhjssdakhjgasj',
-      'question': 'Test 3',
-      'answer_a': {
-        'label': 'answerA',
-        'votes': 0
-      },
-      'answer_b': {
-        'label': 'answerB',
-        'votes': 0
-      }
-    },
-    {
-      'id': 'awkeuaweihguuws',
-      'question': 'Test 4',
-      'answer_a': {
-        'label': 'answerA',
-        'votes': 0
-      },
-      'answer_b': {
-        'label': 'answerB',
-        'votes': 0
-      }
-    }
-  ];
 </script>
 
 <Header />
@@ -77,16 +25,13 @@
   <!-- Current Polls
   -->
   {#if currentTab === 'Current Polls'}
-    <PollsContainer polls={activePolls} />
+    <PollsContainer />
   {/if}
 
   <!-- New Poll Form 
   -->
   {#if currentTab === 'Add New Poll'}
-    <NewPollForm
-      on:changeTab={handleChangeTab} 
-      bind:polls={activePolls} 
-    />
+    <NewPollForm on:changeTab={handleChangeTab} />
   {/if}
 </main>
 <Footer />

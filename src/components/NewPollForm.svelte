@@ -1,5 +1,5 @@
 <script>
-  export let polls;
+  import PollStore from '../stores/PollStore';
 
   // uuid generator
   import { v4 as uuid4 } from "uuid";
@@ -14,20 +14,20 @@
   let answerB;
 
   // poll creation handler
-  const handleCreateNewPoll = (newPollData) => {
+  const handleCreateNewPoll = ( newPollData ) => {
     // go to Polls tab
     dispatch('changeTab', 'Current Polls');
 
     // append new poll into the begin of the list
-    polls = [newPollData, ...polls]
+    PollStore.update( currentData => [newPollData, ...currentData] );
   };
 
   // form submit handler
   const handleSubmit = () => {
     // validating inputs
-    if( !pollQuestion || pollQuestion.trim() === '') return alert("Please, insert a valid 'Poll Question'.")
-    if( !answerA || answerA.trim() === '') return alert("Please, insert a valid 'Answer A value'")
-    if( !answerB || answerB.trim() === '') return alert("Please, insert a valid 'Answer B value'")
+    if( !pollQuestion || pollQuestion.trim() === '') return alert("Please, insert a valid 'Poll Question'.");
+    if( !answerA || answerA.trim() === '') return alert("Please, insert a valid 'Answer A value'");
+    if( !answerB || answerB.trim() === '') return alert("Please, insert a valid 'Answer B value'");
 
     // new poll data object
     const pollData = {
@@ -41,7 +41,7 @@
         'label': answerB,
         'votes': 0
       }
-    }
+    };
 
     // dispatching a custom event for creating a new poll
     handleCreateNewPoll(pollData)

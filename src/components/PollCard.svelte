@@ -28,7 +28,7 @@
       on:click={() => dispatch('vote', {id: poll.id, letter: 'a'} )}
       class="answer-btn answer-a"
     >
-      <div class="percent percent-a" style="width: {percentA}%;"></div>
+      <div class="percent percent-a" style="width: {percentA || 0}%;"></div>
       {poll.answer_a.label} ({poll.answer_a.votes} votes)
     </button>
 
@@ -37,7 +37,7 @@
       on:click={() => dispatch('vote', {id: poll.id, letter: 'b'} )} 
       class="answer-btn answer-b"
     >
-      <div class="percent percent-b" style="width: {percentB}%;"></div>
+      <div class="percent percent-b" style="width: {percentB || 0}%;"></div>
       {poll.answer_b.label} ({poll.answer_b.votes} votes)
     </button>
   </div>

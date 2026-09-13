@@ -1,27 +1,27 @@
 <script>
-  export let polls;
-
+  import PollStore from '../stores/PollStore';
   import PollCard from "./PollCard.svelte";
 
   // vote handler
   const handleVote = ( e ) => {
-    // poll id and answer letter
-    const id = e.detail.id;
-    const answerLetter = e.detail.letter;
+    // updating the poll by incrementing a vote to the selected answer
+    PollStore.update( ( currentData ) => {
+      const id = e.detail.id;
+      const answerLetter = e.detail.letter;
 
-    // get the poll index where the vote happend 
-    const specificPollIndex = polls.findIndex( poll => poll.id === id);
-    
-    // define which alternative has been selected (A or B)
-    const answerOptionClicked = `answer_${answerLetter}`;
+      const selectedAnswer = `answer_${answerLetter}`; // like 'answer_a' or 'answer_b'
+      const copiedPolls = [...currentData];
+      const votedPoll = copiedPolls.find( poll => poll.id === id);
+      
+      votedPoll[selectedAnswer].votes++
 
-    // increase +1 to the poll answer votes
-    polls[specificPollIndex][answerOptionClicked].votes += 1;
+      return copiedPolls;
+    })
   }
 </script>
 
 <div class="polls-container">
-  {#each polls as poll (poll.id)}
+  {#each $PollStore as poll (poll.id)}
     <PollCard poll={poll} on:vote={handleVote} />
   {/each}
 </div>

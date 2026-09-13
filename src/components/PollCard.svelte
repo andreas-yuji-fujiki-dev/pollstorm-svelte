@@ -1,5 +1,6 @@
 <script>
   export let poll;
+  import { fade, scale } from 'svelte/transition';
 
   $: totalVotes = poll.answer_a.votes + poll.answer_b.votes;
   $: percentA = Math.floor(100 / totalVotes * poll.answer_a.votes);
@@ -9,7 +10,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
-<div class="poll-card">
+<div class="poll-card" in:fade out:scale|local>
   <div class="card-header">
     <!-- question -->
     <h3 class="poll-question">
@@ -39,6 +40,16 @@
     >
       <div class="percent percent-b" style="width: {percentB || 0}%;"></div>
       {poll.answer_b.label} ({poll.answer_b.votes} votes)
+    </button>
+  </div>
+
+  <!-- delete button -->
+  <div class="delete-wrapper">
+    <button 
+      on:click={() => dispatch('delete', { id: poll.id })}
+      class="delete-btn"
+    >
+      Delete Poll
     </button>
   </div>
 </div>
@@ -130,5 +141,14 @@
   
   .percent-b {
     background-color: #adff2f;
+  }
+
+  .delete-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .delete-btn {
+    color: #ff0000;
   }
 </style>

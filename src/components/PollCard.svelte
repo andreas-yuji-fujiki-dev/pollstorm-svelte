@@ -68,6 +68,8 @@
     flex-direction: column;
     gap: 1.4rem;
 
+    max-width: 37.5rem;
+
     box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.09);
     -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.09);
     -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.09);
@@ -82,6 +84,7 @@
   .poll-question {
     font-size: 2rem;
     opacity: 70%;
+    word-break: break-all;
   }
 
   .total-votes {
@@ -101,6 +104,7 @@
 
   .answer-btn.answer-a {
     position: relative;
+    word-break: break-all;
   }
 
   .answer-btn.answer-a::before {
@@ -117,6 +121,7 @@
 
   .answer-btn.answer-b {
     position: relative;
+    word-break: break-all;
   }
 
   .answer-btn.answer-b::before {

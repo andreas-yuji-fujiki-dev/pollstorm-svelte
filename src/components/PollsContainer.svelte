@@ -20,11 +20,11 @@
       const copiedPolls = [...currentData];
       const votedPoll = copiedPolls.find( poll => poll.id === id);
       
-      votedPoll[selectedAnswer].votes++
+      votedPoll[selectedAnswer].votes++;
 
       return copiedPolls;
     })
-  }
+  };
 
   // delete handler
   const handleDelete = ( e ) => {
